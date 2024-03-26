@@ -1,0 +1,15 @@
+{
+  "AppSettings": {
+    "Secret": "84854u485rtu945tu5894tu9458tu4589tu"
+  },
+  "ConnectionStrings": {
+    "MainContext": "Host=localhost;Database=bp_angular_netcore;Username=postgres;Password=123"
+  },
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning"
+    }
+  },
+  "AllowedHosts": "*"
+}
