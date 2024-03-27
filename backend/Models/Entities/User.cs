@@ -103,6 +103,8 @@ namespace backend.Models.Entities
         public Nullable<System.DateTime> UpdatedAt { get; set; } = DateTime.Now;
         public virtual ICollection<UserNotification> UserNotification { get; set; }
         public virtual ICollection<UserVerification> UserVerification { get; set; }
+        public virtual ICollection<Article> Article { get; set; }
+        public virtual ICollection<ArticleComment> ArticleComment { get; set; }
         public virtual ICollection<Role> Roles { get; set; }
     }
 }
