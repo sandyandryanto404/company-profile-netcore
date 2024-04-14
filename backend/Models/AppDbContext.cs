@@ -1,4 +1,15 @@
-﻿using backend.Models.Entities;
+﻿/**
+ * This file is part of the Sandy Andryanto Company Profile Website.
+ *
+ * @author     Sandy Andryanto <sandy.andryanto404@gmail.com>
+ * @copyright  2024
+ *
+ * For the full copyright and license information,
+ * please view the LICENSE.md file that was distributed
+ * with this source code.
+ */
+
+using backend.Models.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
 using System;
@@ -9,25 +20,11 @@ namespace backend.Models
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
+
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
-            modelBuilder.Entity<UserNotification>()
-              .HasOne(c => c.User)
-              .WithMany(n => n.UserNotification)
-              .OnDelete(DeleteBehavior.NoAction);
-
-            modelBuilder.Entity<UserVerification>()
-              .HasOne(c => c.User)
-              .WithMany(n => n.UserVerification)
-              .OnDelete(DeleteBehavior.NoAction);
-
-            modelBuilder.Entity<User>()
-                .HasMany(e => e.Roles)
-                .WithMany(e => e.Users)
-                .UsingEntity("UserRoles");
 
             modelBuilder.Entity<Article>()
                 .HasMany(e => e.References)
@@ -83,12 +80,7 @@ namespace backend.Models
         public DbSet<Slider> Slider { get; set; }
         public DbSet<Team> Team { get; set; }
         public DbSet<Testimonial> Testimonial { get; set; }
-        public DbSet<LoginAttempt> LoginAttempt { get; set; }
-        public DbSet<PasswordReset> PasswordReset { get; set; }
-        public DbSet<Role> Role { get; set; }
         public DbSet<User> User { get; set; }
-        public DbSet<UserNotification> UserNotification { get; set; }
-        public DbSet<UserVerification> UserVerification { get; set; }
 
     }
 }

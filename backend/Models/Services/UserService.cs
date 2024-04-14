@@ -1,4 +1,14 @@
-﻿
+﻿/**
+ * This file is part of the Sandy Andryanto Company Profile Website.
+ *
+ * @author     Sandy Andryanto <sandy.andryanto404@gmail.com>
+ * @copyright  2024
+ *
+ * For the full copyright and license information,
+ * please view the LICENSE.md file that was distributed
+ * with this source code.
+ */
+
 using backend.Models.Entities;
 using backend.Models.Requests;
 using backend.Models.Responses;
@@ -31,7 +41,7 @@ namespace backend.Models.Services
 
         public AuthenticateResponse Authenticate(AuthenticateRequest model)
         {
-            var user = (from u in _context.User where u.Username == model.Username || u.Email == model.Username select u).SingleOrDefault();
+            var user = (from u in _context.User where u.Email == model.Username select u).SingleOrDefault();
 
             // return null if user not found
             if (user == null)

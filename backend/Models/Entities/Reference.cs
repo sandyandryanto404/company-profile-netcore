@@ -1,4 +1,15 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿/**
+ * This file is part of the Sandy Andryanto Company Profile Website.
+ *
+ * @author     Sandy Andryanto <sandy.andryanto404@gmail.com>
+ * @copyright  2024
+ *
+ * For the full copyright and license information,
+ * please view the LICENSE.md file that was distributed
+ * with this source code.
+ */
+
+using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -12,6 +23,10 @@ namespace backend.Models.Entities
     [Index(nameof(UpdatedAt))]
     public class Reference
     {
+        public const int TYPE_ARTICLE = 1;
+        public const int TYPE_TAG = 2;
+        public const int TYPE_PORTFOLIO = 3;
+
         public Reference()
         {
             this.Articles = new HashSet<Article>();
@@ -36,8 +51,8 @@ namespace backend.Models.Entities
         [Column(TypeName = "int2")]
         public int Status { get; set; } = 0;
 
-        public Nullable<System.DateTime> CreatedAt { get; set; } = DateTime.Now;
-        public Nullable<System.DateTime> UpdatedAt { get; set; } = DateTime.Now;
+        public Nullable<System.DateTime> CreatedAt { get; set; } = DateTime.UtcNow;
+        public Nullable<System.DateTime> UpdatedAt { get; set; } = DateTime.UtcNow;
 
         public virtual ICollection<Article> Articles { get; set; }
 
