@@ -1,0 +1,54 @@
+<div class="container py-5">
+  <div class="row h-100 justify-content-center align-items-center mt-5">
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-header text-center bg-primary text-white">
+          <h4 class="p-2">
+            <i class="bi bi-lock me-1"></i> Sign In
+          </h4>
+        </div>
+        <div class="card-body">
+          <h1 class="text-center mb-2 auth-icon text-primary"><i class="bi bi-person-circle"></i></h1>
+          <form action="" method="POST" autocomplete="off">
+            <p class="card-text fw-bold text-muted text-center mb-4">
+              <small>Please complete the form below.</small>
+            </p>
+            <div class="input-group mb-3">
+              <input type="email" class="form-control" placeholder="Email Address" />
+              <span class="input-group-text" id="basic-addon1">
+                <i class="bi bi-envelope"></i>
+              </span>
+            </div>
+            <div class="input-group mb-3">
+              <input type="password" class="form-control" placeholder="Password" />
+              <span class="input-group-text" id="basic-addon1">
+                <i class="bi bi-key"></i>
+              </span>
+            </div>
+            <div class="clearfix">
+              <div class="float-start">
+                <div class="mb-3 form-check">
+                  <input type="checkbox" name="remember" id="remember" class="form-check-input" />
+                  <label class="form-check-label" for="exampleCheck1">Remember Me</label>
+                </div>
+              </div>
+              <div class="float-end">
+                <a class="text-decoration-none" [routerLink]="['/auth/email/forgot']">
+                  <i class="bi bi-key me-2"></i>Forgot password ?
+                </a>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">
+              <i class="bi bi-arrow-right me-1"></i> Sign In
+            </button>
+            <div class="mt-3 text-center">
+              <a class="text-decoration-none" [routerLink]="['/auth/register']">
+                <i class="bi bi-pencil-square me-1"></i>Don't have an account ? <strong>Register Here</strong>
+              </a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
