@@ -10,12 +10,15 @@ import { DetailComponent as ArticleDetail } from './pages/article/detail/detail.
 import { FaqComponent } from './pages/faq/faq.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { ErrorComponent } from './pages/error/error.component';
+import { UnavailableComponent } from './pages/unavailable/unavailable.component';
 // Auth Pages
 import { LoginComponent } from './pages/auth/login/login.component'
 import { RegisterComponent } from './pages/auth/register/register.component'
 import { ForgotComponent } from './pages/auth/email/forgot/forgot.component'
 import { ResetComponent } from './pages/auth/email/reset/reset.component'
 // Account Pages
+import { PasswordComponent } from './pages/account/password/password.component'
+import { ProfileComponent } from './pages/account/profile/profile.component'
 
 export const routes: Routes = [
     { path: '', component: HomeComponent, pathMatch: 'full'  },
@@ -31,5 +34,8 @@ export const routes: Routes = [
     { path: 'auth/register', component: RegisterComponent},
     { path: 'auth/email/forgot', component: ForgotComponent},
     { path: 'auth/email/reset/:token', component: ResetComponent},
+    { path: 'account/password', component: PasswordComponent},
+    { path: 'account/profile', component: ProfileComponent},
+    { path: 'unavailable', component: UnavailableComponent},
     { path: '**', pathMatch: 'full', component: ErrorComponent }
 ];

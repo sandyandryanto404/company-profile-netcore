@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { RouterModule } from '@angular/router';
-import { CommonModule } from '@angular/common';  
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-navigation',
@@ -13,7 +13,7 @@ import { CommonModule } from '@angular/common';
 export class NavigationComponent {
 
     title = environment.title;
-    auth:boolean = true;
+    auth:boolean = false;
 
     logout(): void {
       window.location.href = "/";
