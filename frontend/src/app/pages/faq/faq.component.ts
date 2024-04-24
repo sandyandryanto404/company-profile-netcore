@@ -12,13 +12,16 @@ import { Title } from "@angular/platform-browser";
 export class FaqComponent implements OnInit {
 
   title = environment.title;
+  loading:boolean = true;
 
   constructor(private titleService:Title) {
     this.titleService.setTitle("FAQ | " + this.title);
   }
 
   ngOnInit(): void {
-    
+      setTimeout(() => {
+        this.loading = false
+    }, 3000)
   }
 
 }

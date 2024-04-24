@@ -2,14 +2,24 @@
   <div class="container px-5">
     <div class="row justify-content-center">
       <div class="col-lg-8 col-xxl-6">
-        <div class="text-center my-5">
-          <h1 class="fw-bolder mb-3">Our mission is to make building websites easier for everyone.</h1>
-          <p class="lead fw-normal text-muted mb-4">Start Bootstrap was built on the idea that quality,
-            functional website templates and themes should be available to everyone. Use our open
-            source, free products, or support us by purchasing one of our premium products or services.
-          </p>
-          <a class="btn btn-primary btn-lg" href="#scroll-target">Read our story</a>
-        </div>
+        @if(loading){
+          <div class="text-center my-5 shimmer-wrapper">
+              <div class="shimmer-line shimmer-line-br shimmer-line-full shimmer-animate"></div>
+              <div class="shimmer-line shimmer-line-br shimmer-line-full shimmer-animate"></div>
+              <div class="shimmer-line shimmer-line-br shimmer-line-full shimmer-animate"></div>
+              <div class="shimmer-line shimmer-line-br shimmer-line-full shimmer-animate"></div>
+              <div class="shimmer-line shimmer-line-br shimmer-line-full shimmer-animate"></div>
+          </div>
+        }@else{
+            <div class="text-center my-5">
+              <h1 class="fw-bolder mb-3">Our mission is to make building websites easier for everyone.</h1>
+              <p class="lead fw-normal text-muted mb-4">Start Bootstrap was built on the idea that quality,
+                functional website templates and themes should be available to everyone. Use our open
+                source, free products, or support us by purchasing one of our premium products or services.
+              </p>
+              <a class="btn btn-primary btn-lg" href="#scroll-target">Read our story</a>
+            </div>
+        }
       </div>
     </div>
   </div>
@@ -22,31 +32,86 @@
       </div>
       <div class="col-lg-8">
         <div class="row gx-5 row-cols-1 row-cols-md-2">
-          <div class="col mb-5 h-100">
-            <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-collection"></i>
-            </div>
-            <h2 class="h5">Featured title</h2>
-            <p class="mb-0">Paragraph of text beneath the heading to explain the heading. Here
-              is just a bit more text.</p>
-          </div>
-          <div class="col mb-5 h-100">
-            <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-building"></i></div>
-            <h2 class="h5">Featured title</h2>
-            <p class="mb-0">Paragraph of text beneath the heading to explain the heading. Here
-              is just a bit more text.</p>
-          </div>
-          <div class="col mb-5 mb-md-0 h-100">
-            <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-toggles2"></i></div>
-            <h2 class="h5">Featured title</h2>
-            <p class="mb-0">Paragraph of text beneath the heading to explain the heading. Here
-              is just a bit more text.</p>
-          </div>
-          <div class="col h-100">
-            <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-toggles2"></i></div>
-            <h2 class="h5">Featured title</h2>
-            <p class="mb-0">Paragraph of text beneath the heading to explain the heading. Here
-              is just a bit more text.</p>
-          </div>
+            @if(loading){
+              <div class="col mb-5 h-100">
+                  <div class="shimmer-wrapper">
+                      <div class="profile">
+                          <div class="shimmer-line shimmer-line-md shimmer-animate" style="height:3rem; width:4rem;"></div>
+                          <div class="profile-data">
+                              <div class="shimmer-line shimmer-line-br shimmer-line-60 shimmer-animate"></div>
+                              <div class="shimmer-line shimmer-line-br shimmer-line-full  shimmer-animate"></div>
+                          </div>
+                      </div>
+                      <div class="shimmer-line shimmer-line-br shimmer-line-full shimmer-animate"></div>
+                      <div class="shimmer-line shimmer-line-br shimmer-line-full shimmer-animate"></div>
+                  </div>
+              </div>
+              <div class="col mb-5 h-100">
+                  <div class="shimmer-wrapper">
+                      <div class="profile">
+                          <div class="shimmer-line shimmer-line-md shimmer-animate" style="height:3rem; width:4rem;"></div>
+                          <div class="profile-data">
+                              <div class="shimmer-line shimmer-line-br shimmer-line-60 shimmer-animate"></div>
+                              <div class="shimmer-line shimmer-line-br shimmer-line-full  shimmer-animate"></div>
+                          </div>
+                      </div>
+                      <div class="shimmer-line shimmer-line-br shimmer-line-full shimmer-animate"></div>
+                      <div class="shimmer-line shimmer-line-br shimmer-line-full shimmer-animate"></div>
+                  </div>
+              </div>
+              <div class="col mb-5 mb-md-0 h-100">
+                  <div class="shimmer-wrapper">
+                      <div class="profile">
+                          <div class="shimmer-line shimmer-line-md shimmer-animate" style="height:3rem; width:4rem;"></div>
+                          <div class="profile-data">
+                              <div class="shimmer-line shimmer-line-br shimmer-line-60 shimmer-animate"></div>
+                              <div class="shimmer-line shimmer-line-br shimmer-line-full  shimmer-animate"></div>
+                          </div>
+                      </div>
+                      <div class="shimmer-line shimmer-line-br shimmer-line-full shimmer-animate"></div>
+                      <div class="shimmer-line shimmer-line-br shimmer-line-full shimmer-animate"></div>
+                  </div>
+              </div>
+              <div class="col h-100">
+                  <div class="shimmer-wrapper">
+                      <div class="profile">
+                          <div class="shimmer-line shimmer-line-md shimmer-animate" style="height:3rem; width:4rem;"></div>
+                          <div class="profile-data">
+                              <div class="shimmer-line shimmer-line-br shimmer-line-60 shimmer-animate"></div>
+                              <div class="shimmer-line shimmer-line-br shimmer-line-full  shimmer-animate"></div>
+                          </div>
+                      </div>
+                      <div class="shimmer-line shimmer-line-br shimmer-line-full shimmer-animate"></div>
+                      <div class="shimmer-line shimmer-line-br shimmer-line-full shimmer-animate"></div>
+                  </div>
+              </div>
+            }@else{
+              <div class="col mb-5 h-100">
+                <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-collection"></i>
+                </div>
+                <h2 class="h5">Featured title</h2>
+                <p class="mb-0">Paragraph of text beneath the heading to explain the heading. Here
+                  is just a bit more text.</p>
+              </div>
+              <div class="col mb-5 h-100">
+                <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-building"></i></div>
+                <h2 class="h5">Featured title</h2>
+                <p class="mb-0">Paragraph of text beneath the heading to explain the heading. Here
+                  is just a bit more text.</p>
+              </div>
+              <div class="col mb-5 mb-md-0 h-100">
+                <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-toggles2"></i></div>
+                <h2 class="h5">Featured title</h2>
+                <p class="mb-0">Paragraph of text beneath the heading to explain the heading. Here
+                  is just a bit more text.</p>
+              </div>
+              <div class="col h-100">
+                <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-toggles2"></i></div>
+                <h2 class="h5">Featured title</h2>
+                <p class="mb-0">Paragraph of text beneath the heading to explain the heading. Here
+                  is just a bit more text.</p>
+              </div>
+            }
         </div>
       </div>
     </div>
@@ -59,38 +124,93 @@
       <p class="lead fw-normal text-muted mb-5">Dedicated to quality and your success</p>
     </div>
     <div class="row gx-5 row-cols-1 row-cols-sm-2 row-cols-xl-4 justify-content-center">
-      <div class="col mb-5 mb-5 mb-xl-0">
-        <div class="text-center">
-          <img class="img-fluid rounded-circle mb-4 px-4" src="https://dummyimage.com/150x150/ced4da/6c757d"
-            alt="..." />
-          <h5 class="fw-bolder">Ibbie Eckart</h5>
-          <div class="fst-italic text-muted">Founder &amp; CEO</div>
-        </div>
-      </div>
-      <div class="col mb-5 mb-5 mb-xl-0">
-        <div class="text-center">
-          <img class="img-fluid rounded-circle mb-4 px-4" src="https://dummyimage.com/150x150/ced4da/6c757d"
-            alt="..." />
-          <h5 class="fw-bolder">Arden Vasek</h5>
-          <div class="fst-italic text-muted">CFO</div>
-        </div>
-      </div>
-      <div class="col mb-5 mb-5 mb-sm-0">
-        <div class="text-center">
-          <img class="img-fluid rounded-circle mb-4 px-4" src="https://dummyimage.com/150x150/ced4da/6c757d"
-            alt="..." />
-          <h5 class="fw-bolder">Toribio Nerthus</h5>
-          <div class="fst-italic text-muted">Operations Manager</div>
-        </div>
-      </div>
-      <div class="col mb-5">
-        <div class="text-center">
-          <img class="img-fluid rounded-circle mb-4 px-4" src="https://dummyimage.com/150x150/ced4da/6c757d"
-            alt="..." />
-          <h5 class="fw-bolder">Malvina Cilla</h5>
-          <div class="fst-italic text-muted">CTO</div>
-        </div>
-      </div>
+        @if(loading){
+          <div class="col mb-5 mb-5 mb-xl-0">
+              <div class="text-center shimmer-wrapper">
+                  <div class="profile">
+                      <div class="shimmer-circle shimmer-circle-md shimmer-animate"></div>
+                      <div class="profile-data">
+                          <div class="shimmer-line shimmer-line-br shimmer-line-60 shimmer-animate"></div>
+                          <div class="shimmer-line shimmer-line-br shimmer-line-full  shimmer-animate"></div>
+                      </div>
+                  </div>
+                  <div class="shimmer-line shimmer-line-br shimmer-line-full shimmer-animate"></div>
+                  <div class="shimmer-line shimmer-line-br shimmer-line-full shimmer-animate"></div>
+               </div>
+          </div>
+          <div class="col mb-5 mb-5 mb-xl-0">
+              <div class="text-center shimmer-wrapper">
+                  <div class="profile">
+                      <div class="shimmer-circle shimmer-circle-md shimmer-animate"></div>
+                      <div class="profile-data">
+                          <div class="shimmer-line shimmer-line-br shimmer-line-60 shimmer-animate"></div>
+                          <div class="shimmer-line shimmer-line-br shimmer-line-full  shimmer-animate"></div>
+                      </div>
+                  </div>
+                  <div class="shimmer-line shimmer-line-br shimmer-line-full shimmer-animate"></div>
+                  <div class="shimmer-line shimmer-line-br shimmer-line-full shimmer-animate"></div>
+               </div>
+          </div>
+          <div class="col mb-5 mb-5 mb-sm-0">
+              <div class="text-center shimmer-wrapper">
+                  <div class="profile">
+                      <div class="shimmer-circle shimmer-circle-md shimmer-animate"></div>
+                      <div class="profile-data">
+                          <div class="shimmer-line shimmer-line-br shimmer-line-60 shimmer-animate"></div>
+                          <div class="shimmer-line shimmer-line-br shimmer-line-full  shimmer-animate"></div>
+                      </div>
+                  </div>
+                  <div class="shimmer-line shimmer-line-br shimmer-line-full shimmer-animate"></div>
+                  <div class="shimmer-line shimmer-line-br shimmer-line-full shimmer-animate"></div>
+               </div>
+          </div>
+          <div class="col mb-5">
+              <div class="text-center shimmer-wrapper">
+                  <div class="profile">
+                      <div class="shimmer-circle shimmer-circle-md shimmer-animate"></div>
+                      <div class="profile-data">
+                          <div class="shimmer-line shimmer-line-br shimmer-line-60 shimmer-animate"></div>
+                          <div class="shimmer-line shimmer-line-br shimmer-line-full  shimmer-animate"></div>
+                      </div>
+                  </div>
+                  <div class="shimmer-line shimmer-line-br shimmer-line-full shimmer-animate"></div>
+                  <div class="shimmer-line shimmer-line-br shimmer-line-full shimmer-animate"></div>
+               </div>
+          </div>
+        }@else{
+          <div class="col mb-5 mb-5 mb-xl-0">
+            <div class="text-center">
+              <img class="img-fluid rounded-circle mb-4 px-4" src="https://dummyimage.com/150x150/ced4da/6c757d"
+                alt="..." />
+              <h5 class="fw-bolder">Ibbie Eckart</h5>
+              <div class="fst-italic text-muted">Founder &amp; CEO</div>
+            </div>
+          </div>
+          <div class="col mb-5 mb-5 mb-xl-0">
+            <div class="text-center">
+              <img class="img-fluid rounded-circle mb-4 px-4" src="https://dummyimage.com/150x150/ced4da/6c757d"
+                alt="..." />
+              <h5 class="fw-bolder">Arden Vasek</h5>
+              <div class="fst-italic text-muted">CFO</div>
+            </div>
+          </div>
+          <div class="col mb-5 mb-5 mb-sm-0">
+            <div class="text-center">
+              <img class="img-fluid rounded-circle mb-4 px-4" src="https://dummyimage.com/150x150/ced4da/6c757d"
+                alt="..." />
+              <h5 class="fw-bolder">Toribio Nerthus</h5>
+              <div class="fst-italic text-muted">Operations Manager</div>
+            </div>
+          </div>
+          <div class="col mb-5">
+            <div class="text-center">
+              <img class="img-fluid rounded-circle mb-4 px-4" src="https://dummyimage.com/150x150/ced4da/6c757d"
+                alt="..." />
+              <h5 class="fw-bolder">Malvina Cilla</h5>
+              <div class="fst-italic text-muted">CTO</div>
+            </div>
+          </div>
+        }
     </div>
   </div>
 </section>
@@ -108,84 +228,132 @@
 
   <div class="container overflow-hidden">
     <div class="row gy-4 gy-md-0 gx-xxl-5">
-      <div class="col-12 col-md-4">
-        <div class="card border-0 border-bottom border-primary shadow-sm">
-          <div class="card-body p-4 p-xxl-5">
-            <figure>
-              <img class="img-fluid rounded rounded-circle mb-4 border border-5" loading="lazy"
-                src="https://dummyimage.com/150x150/ced4da/6c757d" alt="">
-              <figcaption>
-                <div class="mb-3 mt-2">
-                  <i class="bi bi-star text-warning me-2"></i>
-                  <i class="bi bi-star text-warning me-2"></i>
-                  <i class="bi bi-star text-warning me-2"></i>
-                  <i class="bi bi-star text-warning me-2"></i>
-                  <i class="bi bi-star text-warning me-2"></i>
-                  <i class="bi bi-star text-warning me-2"></i>
-                </div>
-                <blockquote class="bsb-blockquote-icon mb-4">Nam ultricies, ex lacinia dapibus
-                  faucibus, sapien ipsum euismod massa, at aliquet erat turpis quis diam. Class
-                  aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
-                  himenaeos.</blockquote>
-                <h4 class="mb-2">Luna John</h4>
-                <h5 class="fs-6 text-secondary mb-0">UX Designer</h5>
-              </figcaption>
-            </figure>
+       @if(loading){
+          <div class="col-12 col-md-4">
+              <div class="card h-100 shadow border-0">
+                  <div class="card-body p-4">
+                      <div class="shimmer-circle shimmer-circle-md shimmer-animate rounded-3 my-1" style="height:200px; width:100%;"></div>
+                      <div class="profile">
+                          <div class="profile-data">
+                              <div class="shimmer-line shimmer-line-br shimmer-line-60 shimmer-animate"></div>
+                              <div class="shimmer-line shimmer-line-br shimmer-line-full  shimmer-animate"></div>
+                          </div>
+                      </div>
+                      <div class="shimmer-line shimmer-line-br shimmer-line-full shimmer-animate"></div>
+                      <div class="shimmer-line shimmer-line-br shimmer-line-full shimmer-animate"></div>
+                  </div>
+              </div>
           </div>
-        </div>
-      </div>
-      <div class="col-12 col-md-4">
-        <div class="card border-0 border-bottom border-primary shadow-sm">
-          <div class="card-body p-4 p-xxl-5">
-            <figure>
-              <img class="img-fluid rounded rounded-circle mb-4 border border-5" loading="lazy"
-                src="https://dummyimage.com/150x150/ced4da/6c757d" alt="">
-              <figcaption>
-                <div class="mb-3 mt-2">
-                  <i class="bi bi-star text-warning me-2"></i>
-                  <i class="bi bi-star text-warning me-2"></i>
-                  <i class="bi bi-star text-warning me-2"></i>
-                  <i class="bi bi-star text-warning me-2"></i>
-                  <i class="bi bi-star text-warning me-2"></i>
-                  <i class="bi bi-star text-warning me-2"></i>
-                </div>
-                <blockquote class="bsb-blockquote-icon mb-4">Nam ultricies, ex lacinia dapibus
-                  faucibus, sapien ipsum euismod massa, at aliquet erat turpis quis diam. Class
-                  aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
-                  himenaeos.</blockquote>
-                <h4 class="mb-2">Mark Smith</h4>
-                <h5 class="fs-6 text-secondary mb-0">Marketing Specialist</h5>
-              </figcaption>
-            </figure>
+          <div class="col-12 col-md-4">
+              <div class="card h-100 shadow border-0">
+                  <div class="card-body p-4">
+                      <div class="shimmer-circle shimmer-circle-md shimmer-animate rounded-3 my-1" style="height:200px; width:100%;"></div>
+                      <div class="profile">
+                          <div class="profile-data">
+                              <div class="shimmer-line shimmer-line-br shimmer-line-60 shimmer-animate"></div>
+                              <div class="shimmer-line shimmer-line-br shimmer-line-full  shimmer-animate"></div>
+                          </div>
+                      </div>
+                      <div class="shimmer-line shimmer-line-br shimmer-line-full shimmer-animate"></div>
+                      <div class="shimmer-line shimmer-line-br shimmer-line-full shimmer-animate"></div>
+                  </div>
+              </div>
           </div>
-        </div>
-      </div>
-      <div class="col-12 col-md-4">
-        <div class="card border-0 border-bottom border-primary shadow-sm">
-          <div class="card-body p-4 p-xxl-5">
-            <figure>
-              <img class="img-fluid rounded rounded-circle mb-4 border border-5" loading="lazy"
-                src="https://dummyimage.com/150x150/ced4da/6c757d" alt="">
-              <figcaption>
-                <div class="mb-3 mt-2">
-                  <i class="bi bi-star text-warning me-2"></i>
-                  <i class="bi bi-star text-warning me-2"></i>
-                  <i class="bi bi-star text-warning me-2"></i>
-                  <i class="bi bi-star text-warning me-2"></i>
-                  <i class="bi bi-star text-warning me-2"></i>
-                  <i class="bi bi-star text-warning me-2"></i>
-                </div>
-                <blockquote class="bsb-blockquote-icon mb-4">Nam ultricies, ex lacinia dapibus
-                  faucibus, sapien ipsum euismod massa, at aliquet erat turpis quis diam. Class
-                  aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
-                  himenaeos.</blockquote>
-                <h4 class="mb-2">Luke Reeves</h4>
-                <h5 class="fs-6 text-secondary mb-0">Sales Manager</h5>
-              </figcaption>
-            </figure>
+          <div class="col-12 col-md-4">
+              <div class="card h-100 shadow border-0">
+                  <div class="card-body p-4">
+                      <div class="shimmer-circle shimmer-circle-md shimmer-animate rounded-3 my-1" style="height:200px; width:100%;"></div>
+                      <div class="profile">
+                          <div class="profile-data">
+                              <div class="shimmer-line shimmer-line-br shimmer-line-60 shimmer-animate"></div>
+                              <div class="shimmer-line shimmer-line-br shimmer-line-full  shimmer-animate"></div>
+                          </div>
+                      </div>
+                      <div class="shimmer-line shimmer-line-br shimmer-line-full shimmer-animate"></div>
+                      <div class="shimmer-line shimmer-line-br shimmer-line-full shimmer-animate"></div>
+                  </div>
+              </div>
           </div>
-        </div>
-      </div>
+       }@else{
+          <div class="col-12 col-md-4">
+            <div class="card border-0 border-bottom border-primary shadow-sm">
+              <div class="card-body p-4 p-xxl-5">
+                <figure>
+                  <img class="img-fluid rounded rounded-circle mb-4 border border-5" loading="lazy"
+                    src="https://dummyimage.com/150x150/ced4da/6c757d" alt="">
+                  <figcaption>
+                    <div class="mb-3 mt-2">
+                      <i class="bi bi-star text-warning me-2"></i>
+                      <i class="bi bi-star text-warning me-2"></i>
+                      <i class="bi bi-star text-warning me-2"></i>
+                      <i class="bi bi-star text-warning me-2"></i>
+                      <i class="bi bi-star text-warning me-2"></i>
+                      <i class="bi bi-star text-warning me-2"></i>
+                    </div>
+                    <blockquote class="bsb-blockquote-icon mb-4">Nam ultricies, ex lacinia dapibus
+                      faucibus, sapien ipsum euismod massa, at aliquet erat turpis quis diam. Class
+                      aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
+                      himenaeos.</blockquote>
+                    <h4 class="mb-2">Luna John</h4>
+                    <h5 class="fs-6 text-secondary mb-0">UX Designer</h5>
+                  </figcaption>
+                </figure>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-4">
+            <div class="card border-0 border-bottom border-primary shadow-sm">
+              <div class="card-body p-4 p-xxl-5">
+                <figure>
+                  <img class="img-fluid rounded rounded-circle mb-4 border border-5" loading="lazy"
+                    src="https://dummyimage.com/150x150/ced4da/6c757d" alt="">
+                  <figcaption>
+                    <div class="mb-3 mt-2">
+                      <i class="bi bi-star text-warning me-2"></i>
+                      <i class="bi bi-star text-warning me-2"></i>
+                      <i class="bi bi-star text-warning me-2"></i>
+                      <i class="bi bi-star text-warning me-2"></i>
+                      <i class="bi bi-star text-warning me-2"></i>
+                      <i class="bi bi-star text-warning me-2"></i>
+                    </div>
+                    <blockquote class="bsb-blockquote-icon mb-4">Nam ultricies, ex lacinia dapibus
+                      faucibus, sapien ipsum euismod massa, at aliquet erat turpis quis diam. Class
+                      aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
+                      himenaeos.</blockquote>
+                    <h4 class="mb-2">Mark Smith</h4>
+                    <h5 class="fs-6 text-secondary mb-0">Marketing Specialist</h5>
+                  </figcaption>
+                </figure>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-4">
+            <div class="card border-0 border-bottom border-primary shadow-sm">
+              <div class="card-body p-4 p-xxl-5">
+                <figure>
+                  <img class="img-fluid rounded rounded-circle mb-4 border border-5" loading="lazy"
+                    src="https://dummyimage.com/150x150/ced4da/6c757d" alt="">
+                  <figcaption>
+                    <div class="mb-3 mt-2">
+                      <i class="bi bi-star text-warning me-2"></i>
+                      <i class="bi bi-star text-warning me-2"></i>
+                      <i class="bi bi-star text-warning me-2"></i>
+                      <i class="bi bi-star text-warning me-2"></i>
+                      <i class="bi bi-star text-warning me-2"></i>
+                      <i class="bi bi-star text-warning me-2"></i>
+                    </div>
+                    <blockquote class="bsb-blockquote-icon mb-4">Nam ultricies, ex lacinia dapibus
+                      faucibus, sapien ipsum euismod massa, at aliquet erat turpis quis diam. Class
+                      aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
+                      himenaeos.</blockquote>
+                    <h4 class="mb-2">Luke Reeves</h4>
+                    <h5 class="fs-6 text-secondary mb-0">Sales Manager</h5>
+                  </figcaption>
+                </figure>
+              </div>
+            </div>
+          </div>
+       }
     </div>
   </div>
 </section>

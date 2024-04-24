@@ -6,30 +6,69 @@
       <p class="lead fw-normal text-muted mb-0">Company portfolio</p>
     </div>
     <div class="row gx-5">
-      <div class="col-lg-6">
-        <div class="position-relative mb-5">
-          <img class="img-fluid rounded-3 mb-3" src="https://dummyimage.com/600x400/343a40/6c757d" alt="..." />
-          <a class="h3 fw-bolder text-decoration-none link-dark stretched-link" href="#!">Project name</a>
-        </div>
-      </div>
-      <div class="col-lg-6">
-        <div class="position-relative mb-5">
-          <img class="img-fluid rounded-3 mb-3" src="https://dummyimage.com/600x400/343a40/6c757d" alt="..." />
-          <a class="h3 fw-bolder text-decoration-none link-dark stretched-link" href="#!">Project name</a>
-        </div>
-      </div>
-      <div class="col-lg-6">
-        <div class="position-relative mb-5 mb-lg-0">
-          <img class="img-fluid rounded-3 mb-3" src="https://dummyimage.com/600x400/343a40/6c757d" alt="..." />
-          <a class="h3 fw-bolder text-decoration-none link-dark stretched-link" href="#!">Project name</a>
-        </div>
-      </div>
-      <div class="col-lg-6">
-        <div class="position-relative">
-          <img class="img-fluid rounded-3 mb-3" src="https://dummyimage.com/600x400/343a40/6c757d" alt="..." />
-          <a class="h3 fw-bolder text-decoration-none link-dark stretched-link" href="#!">Project name</a>
-        </div>
-      </div>
+        @if(loading){
+          <div class="col-lg-6 ">
+              <div class="position-relative mb-5">
+                  <div class="shimmer-wrapper text-center">
+                      <div class="shimmer-circle shimmer-circle-md shimmer-animate rounded-3 my-5" style="height:400px; width:100%;"></div>
+                  </div>
+                  <div class="shimmer-line shimmer-line-br shimmer-line-full shimmer-animate"></div>
+                  <div class="shimmer-line shimmer-line-br shimmer-line-full shimmer-animate"></div>
+              </div>
+          </div>
+          <div class="col-lg-6">
+              <div class="position-relative mb-5">
+                  <div class="shimmer-wrapper text-center">
+                      <div class="shimmer-circle shimmer-circle-md shimmer-animate rounded-3 my-5" style="height:400px; width:100%;"></div>
+                  </div>
+                  <div class="shimmer-line shimmer-line-br shimmer-line-full shimmer-animate"></div>
+                  <div class="shimmer-line shimmer-line-br shimmer-line-full shimmer-animate"></div>
+              </div>
+          </div>
+          <div class="col-lg-6">
+              <div class="position-relative mb-5">
+                  <div class="shimmer-wrapper text-center">
+                      <div class="shimmer-circle shimmer-circle-md shimmer-animate rounded-3 my-5" style="height:400px; width:100%;"></div>
+                  </div>
+                  <div class="shimmer-line shimmer-line-br shimmer-line-full shimmer-animate"></div>
+                  <div class="shimmer-line shimmer-line-br shimmer-line-full shimmer-animate"></div>
+              </div>
+          </div>
+          <div class="col-lg-6">
+              <div class="position-relative mb-5">
+                  <div class="shimmer-wrapper text-center">
+                      <div class="shimmer-circle shimmer-circle-md shimmer-animate rounded-3 my-5" style="height:400px; width:100%;"></div>
+                  </div>
+                  <div class="shimmer-line shimmer-line-br shimmer-line-full shimmer-animate"></div>
+                  <div class="shimmer-line shimmer-line-br shimmer-line-full shimmer-animate"></div>
+              </div>
+          </div>
+        }@else{
+          <div class="col-lg-6">
+            <div class="position-relative mb-5">
+              <img class="img-fluid rounded-3 mb-3" src="https://dummyimage.com/600x400/343a40/6c757d" alt="..." />
+              <a class="h3 fw-bolder text-decoration-none link-dark stretched-link" href="#!">Project name</a>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="position-relative mb-5">
+              <img class="img-fluid rounded-3 mb-3" src="https://dummyimage.com/600x400/343a40/6c757d" alt="..." />
+              <a class="h3 fw-bolder text-decoration-none link-dark stretched-link" href="#!">Project name</a>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="position-relative mb-5 mb-lg-0">
+              <img class="img-fluid rounded-3 mb-3" src="https://dummyimage.com/600x400/343a40/6c757d" alt="..." />
+              <a class="h3 fw-bolder text-decoration-none link-dark stretched-link" href="#!">Project name</a>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="position-relative">
+              <img class="img-fluid rounded-3 mb-3" src="https://dummyimage.com/600x400/343a40/6c757d" alt="..." />
+              <a class="h3 fw-bolder text-decoration-none link-dark stretched-link" href="#!">Project name</a>
+            </div>
+          </div>
+        }
     </div>
   </div>
 </section>
