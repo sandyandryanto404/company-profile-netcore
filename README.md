@@ -57,7 +57,7 @@
 	<li>
 		Backend Technologies
 		<ol type="1">
-			<li>Postgre SQL 13/li>
+			<li>Postgre SQL 13</li>
 			<li>C#</li>
 			<li>Microsoft Entity Framework Core 8.0.3</li>
 			<li>.NET Core 8 </li>
