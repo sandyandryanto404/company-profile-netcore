@@ -145,6 +145,19 @@ namespace backend.Controllers
                     model.File.CopyTo(stream);
                 }
 
+                if (!String.IsNullOrWhiteSpace(user.Image))
+                {
+                    string fileNameWithPathUser = Path.Combine(path, user.Image);
+                    if(System.IO.File.Exists(fileNameWithPathUser))
+                    {
+                        System.IO.File.Delete(fileNameWithPathUser);
+                    }
+                }
+
+                user.Image = fileName;
+                _db.Update(user);
+                _db.SaveChanges();
+
                 model.FileName = "Uploads/" + fileName;
                 model.IsSuccess = true;
                 model.Message = "File upload successfully";

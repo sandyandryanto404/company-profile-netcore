@@ -13,6 +13,7 @@ using backend.Models;
 using backend.Models.Services;
 using backend.Utilities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
 
 namespace backend
 {
@@ -53,9 +54,20 @@ namespace backend
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+
+            string path = Path.Combine(Directory.GetCurrentDirectory(), "Uploads");
+
+            //create folder if not exist
+            if (!Directory.Exists(path))
+                Directory.CreateDirectory(path);
+
             app.UseRouting();
 
-
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(Path.Combine(env.ContentRootPath, "Uploads")),
+                RequestPath = "/Uploads"
+            });
 
             // global cors policy
             app.UseCors(x => x
