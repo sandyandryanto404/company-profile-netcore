@@ -13,12 +13,10 @@ namespace backend.Controllers
     [Authorize]
     public class AccountController : Controller
     {
-        private IUserService _userService;
         private readonly AppDbContext _db;
 
-        public AccountController(IUserService userService, AppDbContext db)
+        public AccountController(AppDbContext db)
         {
-            _userService = userService;
             _db = db;
         }
 
@@ -113,5 +111,46 @@ namespace backend.Controllers
             return Ok(new { status = true, data = user, message = "Your password has been changed!!" });
         }
 
+        [HttpPost("profile/upload")]
+        public IActionResult upload(IFormCollection form)
+        {
+            var user = (User)this.HttpContext.Items["User"];
+
+            if (HttpContext.Request.Form.Files.Count == 0)
+            {
+                return BadRequest(new { message = "Please select file !" });
+            }
+
+            SingleFileModel model = new SingleFileModel();
+            model.File = HttpContext.Request.Form.Files.FirstOrDefault();
+
+            if (ModelState.IsValid)
+            {
+                model.IsResponse = true;
+
+                string path = Path.Combine(Directory.GetCurrentDirectory(), "Uploads");
+
+                //create folder if not exist
+                if (!Directory.Exists(path))
+                    Directory.CreateDirectory(path);
+
+                //get file extension
+                FileInfo fileInfo = new FileInfo(model.File.FileName);
+                string fileName = Guid.NewGuid().ToString() + "" + fileInfo.Extension;
+
+                string fileNameWithPath = Path.Combine(path, fileName);
+
+                using (var stream = new FileStream(fileNameWithPath, FileMode.Create))
+                {
+                    model.File.CopyTo(stream);
+                }
+
+                model.FileName = "Uploads/" + fileName;
+                model.IsSuccess = true;
+                model.Message = "File upload successfully";
+            }
+
+            return Ok(model);
+        }
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace backend.Models.Requests
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace backend.Models.Requests
 {
     public class SubscribeRequest
     {
@@ -30,6 +32,21 @@
         public string Content { get; set; }
         public Nullable<System.DateTime> CreatedAt { get; set; }
         public List<CommentTree> Childeren { get; set; } = new List<CommentTree>();
+    }
+
+    public class ReponseModel
+    {
+        public string Message { get; set; }
+        public bool IsSuccess { get; set; }
+        public bool IsResponse { get; set; }
+    }
+
+    public class SingleFileModel : ReponseModel
+    {
+        [Required(ErrorMessage = "Please enter file name")]
+        public string FileName { get; set; }
+        [Required(ErrorMessage = "Please select file")]
+        public IFormFile File { get; set; }
     }
 
 }
