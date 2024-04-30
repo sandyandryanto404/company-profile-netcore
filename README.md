@@ -51,7 +51,8 @@
 # Technologies Used
 
 <ol type="1">
-	<li>Visual Studio 2022</li>
+	<li>Visual Studio IDE 2022</li>
+	<li>Visual Studio Code</li>
 	<li>Modern Web Browser</li>
 	<li>Git 2.4</li>
 	<li>
