@@ -3,6 +3,7 @@ using backend.Models.Entities;
 using backend.Models.Requests;
 using backend.Utilities;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Xml.Linq;
 
@@ -23,9 +24,55 @@ namespace backend.Controllers
         public IActionResult List(int Page = 1)
         {
             int limit = 3 * Page;
-            Article newArticle = _db.Article.Where(x=> x.Status == 1).OrderByDescending(x=> x.Id).FirstOrDefault();
-            List<Article> newArticles = _db.Article.Where(x => x.Status == 1 && x.Id != newArticle.Id).Take(3).OrderByDescending(x => x.Id).ToList();
-            List<Article> stories = _db.Article.Where(x => x.Status == 1).Take(limit).OrderByDescending(x => x.Id).ToList();
+
+            var newArticle = _db.Article
+                .Include(x => x.User)
+                .Include(x => x.References)
+                .Where(x=> x.Status == 1)
+                .Select(x => new {
+                    x.Id,
+                    x.Title,
+                    x.Description,
+                    x.CreatedAt,
+                    x.Content,
+                    x.User.FirstName,
+                    x.User.LastName,
+                    x.User.Gender,
+                    x.User.Email,
+                    x.User.AboutMe,
+                    x.References
+                })
+                .OrderByDescending(x=> x.Id)
+                .FirstOrDefault();
+
+            var newArticles = _db.Article
+                .Include(x => x.User)
+                .Include(x => x.References)
+                .Where(x => x.Status == 1 && x.Id != newArticle.Id)
+                .Take(3)
+                .Select(x => new {
+                    x.Id,
+                    x.Title,
+                    x.Description,
+                    x.CreatedAt,
+                    x.Content,
+                    x.User.FirstName,
+                    x.User.LastName,
+                    x.User.Gender,
+                    x.User.Email,
+                    x.User.AboutMe,
+                    x.References
+                })
+                .OrderByDescending(x => x.Id)
+                .ToList();
+
+            var stories = _db.Article
+                .Include(x => x.User)
+                .Include(x => x.References)
+                .Where(x => x.Status == 1)
+                .Take(limit)
+                .OrderByDescending(x => x.Id)
+                .ToList();
 
             IDictionary<string, object> response = new Dictionary<string, object>();
             bool continueArticle = limit <= _db.Article.Where(x => x.Status == 1).Count();
@@ -42,7 +89,21 @@ namespace backend.Controllers
         [HttpGet("detail/{slug}")]
         public IActionResult Detail(String slug)
         {
-            var model = _db.Article.FirstOrDefault(x => x.Slug == slug);
+            var model = _db.Article.Include(x => x.User).Include(x=> x.References).Where(x => x.Slug == slug)
+                .Select(x => new { 
+                    x.Id,
+                    x.Title,
+                    x.Description,
+                    x.CreatedAt,
+                    x.Content,
+                    x.User.FirstName,
+                    x.User.LastName,
+                    x.User.Gender,
+                    x.User.Email,
+                    x.User.AboutMe,
+                    x.References
+                })
+                .FirstOrDefault();
 
             if (model == null)
             {
@@ -56,7 +117,7 @@ namespace backend.Controllers
         public IActionResult ListComment(long id)
         {
             IDictionary<string, object> response = new Dictionary<string, object>();
-            List<ArticleComment> elements = _db.ArticleComment.Where(x => x.ArticleId == id).OrderByDescending(x => x.Id).ToList();
+            List<ArticleComment> elements = _db.ArticleComment.Include(x => x.User).Where(x => x.ArticleId == id).OrderByDescending(x => x.Id).ToList();
             List<ArticleComment> comments = this.generateCommentTree(elements);
             response.Add("comments", comments);
             return Ok(new { status = true, message = "ok", data = response });
