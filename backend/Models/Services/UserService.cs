@@ -41,7 +41,7 @@ namespace backend.Models.Services
 
         public AuthenticateResponse Authenticate(AuthenticateRequest model)
         {
-            var user = (from u in _context.User where u.Email == model.Username select u).SingleOrDefault();
+            var user = (from u in _context.User where u.Email == model.Email select u).SingleOrDefault();
 
             // return null if user not found
             if (user == null)

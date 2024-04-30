@@ -14,6 +14,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
 using Microsoft.EntityFrameworkCore;
 
+
 namespace backend.Models.Entities
 {
     [Index(nameof(ParentId))]
@@ -48,5 +49,6 @@ namespace backend.Models.Entities
 
         public Nullable<System.DateTime> CreatedAt { get; set; } = DateTime.UtcNow;
         public Nullable<System.DateTime> UpdatedAt { get; set; } = DateTime.UtcNow;
+        public virtual List<ArticleComment> Children { get; set; }
     }
 }
