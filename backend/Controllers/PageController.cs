@@ -5,6 +5,7 @@ using Faker;
 using backend.Models.Entities;
 using Microsoft.AspNetCore.Identity.Data;
 using backend.Models.Requests;
+using System.Linq;
 
 namespace backend.Controllers
 {
@@ -35,15 +36,18 @@ namespace backend.Controllers
             header.Add("description", Faker.Lorem.Sentence(20));
             response.Add("header", header);
 
-            Testimonial testimonial = _db.Testimonial.Where(x => x.Status == 1).Take(4).OrderBy(x => Guid.NewGuid()).FirstOrDefault();
+            Testimonial testimonial = _db.Testimonial.Include(x=> x.Customer).Where(x => x.Status == 1).Take(4).OrderBy(x => Guid.NewGuid()).FirstOrDefault();
             List<Slider> sliders = _db.Slider.Where(x => x.Status == 1).OrderBy(x => x.Sort).ToList();
             List<Service> services = _db.Service.Where(x => x.Status == 1).Take(4).OrderBy(x => Guid.NewGuid()).ToList();
-            List<Article> articles = _db.Article.Where(x => x.Status == 1).Take(3).OrderBy(x => Guid.NewGuid()).ToList();
+            List<Article> articles = _db.Article.Where(x => x.Status == 1).OrderBy(x => Guid.NewGuid()).ToList();
+
+            List<ArticleResult> articleResults = _db.Database.SqlQueryRaw<ArticleResult>("SELECT a.\"Id\", a.\"Title\", a.\"Slug\", a.\"Description\", a.\"CreatedAt\", u.\"FirstName\", u.\"LastName\", u.\"Gender\",( SELECT string_agg(r.\"Name\", ',') AS r FROM \"public\".\"Reference\" r WHERE r.\"Id\" IN ( SELECT \"ReferencesId\" FROM \"public\".\"ArticleReference\" WHERE \"ArticlesId\" = a.\"Id\")) Categories FROM \"public\".\"Article\" a INNER JOIN \"public\".\"User\" u ON u.\"Id\" = a.\"UserId\" ORDER BY random() LIMIT 3").ToList();
+
 
             response.Add("testimonial", testimonial);
             response.Add("sliders", sliders);
             response.Add("services", services);
-            response.Add("articles", articles);
+            response.Add("articles", articleResults);
 
             return Ok(new { status = true, message = "ok", data = response });
         }

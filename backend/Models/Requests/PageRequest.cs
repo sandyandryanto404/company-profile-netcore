@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using backend.Models.Entities;
+using System.ComponentModel.DataAnnotations;
 
 namespace backend.Models.Requests
 {
@@ -47,6 +48,27 @@ namespace backend.Models.Requests
         public string FileName { get; set; }
         [Required(ErrorMessage = "Please select file")]
         public IFormFile File { get; set; }
+    }
+
+    public class ArticleResult
+    {
+        public long Id { get; set; }
+
+        public string Title { get; set; }
+
+        public string Slug { get; set; }
+
+        public string Description { get; set; }
+
+        public Nullable<System.DateTime> CreatedAt { get; set; }
+
+        public string FirstName { get; set; }
+
+        public string LastName { get; set; }
+
+        public string Gender { get; set; }
+
+        public string Categories { get; set; }
     }
 
 }
