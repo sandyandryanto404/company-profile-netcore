@@ -28,6 +28,7 @@
     "bootstrap-icons": "^1.11.3",
     "country-list-js": "^3.1.8",
     "express": "^4.18.2",
+    "moment": "^2.30.1",
     "rxjs": "~7.8.0",
     "shimmer-css": "^1.0.1",
     "tslib": "^2.3.0",
