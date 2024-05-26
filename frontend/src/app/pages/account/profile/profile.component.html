@@ -13,9 +13,30 @@
                     </h4>
                 </div>
                 <div class="card-body">
-                    <form action="" method="POST" autocomplete="off">
+
+                  <div *ngIf="f.submitted && failed && messageFailed!= ''" class="alert alert-danger" role="alert">
+                      {{ messageFailed }}
+                  </div>
+
+                  <div *ngIf="f.submitted && !failed && messageSuccess!= ''" class="alert alert-success" role="alert">
+                      {{ messageSuccess }}
+                  </div>
+
+                    <form (ngSubmit)="f.form.valid && onSubmit(f)" #f="ngForm" method="POST" autocomplete="off">
                         <div class="row mt-4 mb-2 justify-content-center align-items-center">
-                            <div class="col-md-6">
+                            @if(loadingUpload){
+                              <div class="col-md-6">
+                                  <div class="text-center">
+                                    <h5>
+                                        <small>Profile Picture</small>
+                                    </h5>
+                                    <div class="shimmer-wrapper text-center">
+                                        <div class="shimmer-circle shimmer-circle-md shimmer-animate rounded-2 w-100" style="height:8rem;"></div>
+                                    </div>
+                                </div>
+                              </div>
+                            }@else {
+                              <div class="col-md-6">
                                 <div class="text-center">
                                     <h5>
                                         <small>Profile Picture</small>
@@ -23,19 +44,52 @@
                                     <img class="img-fluid rounded-3" src="{{image}}" alt="..." />
                                 </div>
                                 <div class="mb-3 mt-3">
-                                    <input type="file" class="form-control" id="" placeholder="" name="file_image"/>
+                                    <input type="file" class="form-control" (change)="onChange($event)" #fileUpload name="file_image"/>
                                 </div>
                             </div>
+                            }
                         </div>
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="mb-3 mt-3">
                                     <label for="email" class="form-label">Email:</label>
-                                    <input type="email" class="form-control" id="" placeholder="" name="">
+
+                                    <input
+                                        type="email"
+                                        class="form-control"
+                                        name="email"
+                                        placeholder="Email Address"
+                                        [(ngModel)]="form.email"
+                                        required
+                                        [email]="true"
+                                        #email="ngModel"
+                                        [ngClass]="{ 'is-invalid': f.submitted && email.errors }"
+                                    />
+
+                                    <div *ngIf="email.errors && f.submitted" class="invalid-feedback">
+                                      <div *ngIf="email.errors['required']">Email Address is required</div>
+                                      <div *ngIf="email.errors['email']">Please provide a valid email address</div>
+                                    </div>
+
                                 </div>
                                 <div class="mb-3 mt-3">
                                     <label for="first_name" class="form-label">First Name:</label>
-                                    <input type="text" class="form-control" id="" placeholder="" name="">
+
+                                    <input
+                                      type="text"
+                                      class="form-control"
+                                      name="firstName"
+                                      placeholder="First Name"
+                                      [(ngModel)]="form.firstName"
+                                      required
+                                      #firstName="ngModel"
+                                      [ngClass]="{ 'is-invalid': f.submitted && firstName.errors }"
+                                    />
+
+                                    <div *ngIf="firstName.errors && f.submitted" class="invalid-feedback">
+                                      <div *ngIf="firstName.errors['required']">First name is required</div>
+                                    </div>
+
                                 </div>
                                 <div class="mb-3 mt-3">
                                     <label for="gender" class="form-label">Gender:</label>
@@ -49,11 +103,41 @@
                             <div class="col-md-6">
                                 <div class="mb-3 mt-3">
                                     <label for="phone" class="form-label">Phone Number:</label>
-                                    <input type="text" class="form-control" id="" placeholder="" name="">
+
+                                    <input
+                                      type="text"
+                                      class="form-control"
+                                      name="phone"
+                                      placeholder="Phone Number"
+                                      [(ngModel)]="form.phone"
+                                      required
+                                      #phone="ngModel"
+                                      [ngClass]="{ 'is-invalid': f.submitted && phone.errors }"
+                                    />
+
+                                    <div *ngIf="phone.errors && f.submitted" class="invalid-feedback">
+                                      <div *ngIf="phone.errors['required']">Phone number is required</div>
+                                    </div>
+
                                 </div>
                                 <div class="mb-3 mt-3">
                                     <label for="last_name" class="form-label">Last Name:</label>
-                                    <input type="text" class="form-control" id="" placeholder="" name="">
+
+                                    <input
+                                      type="text"
+                                      class="form-control"
+                                      name="lastName"
+                                      placeholder="Last Name"
+                                      [(ngModel)]="form.lastName"
+                                      required
+                                      #lastName="ngModel"
+                                      [ngClass]="{ 'is-invalid': f.submitted && lastName.errors }"
+                                    />
+
+                                    <div *ngIf="lastName.errors && f.submitted" class="invalid-feedback">
+                                      <div *ngIf="lastName.errors['required']">Last name is required</div>
+                                    </div>
+
                                 </div>
                                 <div class="mb-3 mt-3">
                                     <label for="country" class="form-label">Country:</label>
@@ -66,15 +150,23 @@
                         </div>
                         <div class="mb-3">
                             <label for="address" class="form-label">Address:</label>
-                            <textarea rows="4" class="form-control"></textarea>
+                            <textarea class="form-control" name="address" placeholder="Address"  [(ngModel)]="form.address" #address="ngModel" rows="4"></textarea>
                         </div>
                         <div class="mb-3">
                             <label for="about" class="form-label">About Me:</label>
-                            <textarea rows="4" class="form-control"></textarea>
+                            <textarea class="form-control" name="aboutMe" placeholder="About Me"  [(ngModel)]="form.aboutMe" #about_me="ngModel" rows="4"></textarea>
                         </div>
-                        <button type="submit" class="btn btn-success" bbbTooltipTheme='dark' bbbTooltipPlacement='vertical' bbbTooltip='Update Profile'>
-                            <i class="bi bi-save me-1"></i> Save Changed
-                        </button>
+
+                        @if(loadingSubmit){
+                          <button type="submit" class="btn btn-success disabled" bbbTooltipTheme='dark' bbbTooltipPlacement='vertical' bbbTooltip='Update Profile'>
+                              <i class="spinner-border spinner-border-sm me-1"></i> Save Changed
+                          </button>
+                        }@else {
+                          <button type="submit" class="btn btn-success" bbbTooltipTheme='dark' bbbTooltipPlacement='vertical' bbbTooltip='Update Profile'>
+                              <i class="bi bi-save me-1"></i> Save Changed
+                          </button>
+                        }
+
                         <button type="reset" class="ms-1 text-white btn btn-warning" bbbTooltipTheme='dark' bbbTooltipPlacement='vertical' bbbTooltip='Reset Form'>
                             <i class="bi bi-arrow-clockwise me-1"></i> Reset Form
                         </button>

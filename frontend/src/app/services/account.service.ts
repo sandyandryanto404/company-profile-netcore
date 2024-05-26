@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from  '../../environments/environment';
+import { HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -31,7 +32,9 @@ export class AccountService {
   }
 
   profileUpload(data: any): Observable<any>{
-    return this.http.post(environment.backendURL+"/account/profile/upload", data, { headers: this.authRequestHeader() });
+    let token = window.sessionStorage.getItem("token");
+    let headers = new HttpHeaders({ "Authorization": "Bearer "+token});
+    return this.http.post(environment.backendURL+"/account/profile/upload", data, { headers });
   }
 
 }

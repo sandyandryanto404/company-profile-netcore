@@ -34,7 +34,7 @@ namespace backend.Controllers
 
             if (string.IsNullOrEmpty(model.Email))
             {
-                return BadRequest(new { message = "The field 'Username' can not be empty!" });
+                return BadRequest(new { message = "The field 'Email' can not be empty!" });
             }
 
             var CheckEmail = _db.User.FirstOrDefault(x => x.Email == model.Email && x.Id != user.Id);
@@ -55,6 +55,7 @@ namespace backend.Controllers
             user.Email = model.Email;
             user.FirstName = model.FirstName;
             user.LastName = model.LastName;
+            user.Country = model.Country;
             user.Gender = model.Gender;
             user.Address = model.Address;
             user.AboutMe = model.AboutMe;
@@ -66,7 +67,7 @@ namespace backend.Controllers
             _db.Update(user);
             _db.SaveChanges();
 
-            return Ok(new { status = true, data = user, message = "ok" });
+            return Ok(new { status = true, data = user, message = "Yor profile has been changed !!" });
         }
 
         [HttpPost("password/update")]
