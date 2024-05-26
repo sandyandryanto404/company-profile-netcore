@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { StorageService } from '../../services/storage.service';
 
 @Component({
   selector: 'app-navigation',
@@ -15,8 +16,17 @@ export class NavigationComponent {
     title = environment.title;
     auth:boolean = false;
 
+    constructor(private storageService: StorageService) { }
+
+    ngAfterContentInit (){
+      this.auth = this.storageService.isLoggedIn()
+    }
+
     logout(): void {
-      window.location.href = "/";
+      this.storageService.clean()
+      setTimeout(() => {
+        window.location.href = "/";
+      }, 2000)
     }
 
 }

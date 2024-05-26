@@ -18,19 +18,54 @@
                 <small>Enter your email address and we'll send you an email that will allow you reset
                   password.</small>
               </p>
-              <form action="" method="POST" autocomplete="off">
+              <form (ngSubmit)="f.form.valid && onSubmit(f)" #f="ngForm" method="POST" autocomplete="off">
                 <p class="card-text fw-bold text-muted text-center mb-4">
                   <small>Please complete the form below.</small>
                 </p>
+
+                <div *ngIf="f.submitted && failed && messageFailed!= ''" class="alert alert-danger" role="alert">
+                    {{ messageFailed }}
+                </div>
+
+                <div *ngIf="f.submitted && !failed && messageSuccess!= ''" class="alert alert-success" role="alert">
+                    {{ messageSuccess }}
+                </div>
+
                 <div class="input-group mb-3">
-                  <input type="email" class="form-control" placeholder="Email Address" />
+
+                  <input
+                      type="email"
+                      class="form-control"
+                      name="email"
+                      placeholder="Email Address"
+                      [(ngModel)]="form.email"
+                      required
+                      [email]="true"
+                      #email="ngModel"
+                      [ngClass]="{ 'is-invalid': f.submitted && email.errors }"
+                  />
+
                   <span class="input-group-text" id="basic-addon1">
                     <i class="bi bi-envelope"></i>
                   </span>
+
+                  <div *ngIf="email.errors && f.submitted" class="invalid-feedback">
+                    <div *ngIf="email.errors['required']">Email Address is required</div>
+                    <div *ngIf="email.errors['email']">Please provide a valid email address</div>
+                  </div>
+
                 </div>
-                <button type="submit" class="btn btn-primary w-100" bbbTooltipTheme='dark' bbbTooltipPlacement='vertical' bbbTooltip='Send link reset password now.'>
-                  <i class="bi bi-send me-1"></i> Send Link
-                </button>
+
+                @if(loadingSubmit){
+                  <button type="submit" class="btn btn-primary w-100 disabled" bbbTooltipTheme='dark' bbbTooltipPlacement='vertical' bbbTooltip='Send link reset password now.'>
+                    <i class="spinner-border spinner-border-sm me-1"></i> Send Link
+                  </button>
+                }@else {
+                  <button type="submit" class="btn btn-primary w-100" bbbTooltipTheme='dark' bbbTooltipPlacement='vertical' bbbTooltip='Send link reset password now.'>
+                    <i class="bi bi-send me-1"></i> Send Link
+                  </button>
+                }
+
                 <div class="mt-3 text-center">
                   <a class="text-decoration-none" [routerLink]="['/auth/login']" bbbTooltipTheme='dark' bbbTooltipPlacement='vertical' bbbTooltip='Users enter their email and password in the designated fields to access their accounts'>
                     <i class="bi bi-arrow-left me-1"></i>Remember your password ? <strong>Log In</strong>

@@ -14,31 +14,110 @@
             </div>
             <div class="card-body">
               <h1 class="text-center mb-2 auth-icon text-primary"><i class="bi bi-person-circle"></i></h1>
-              <form action="" method="POST" autocomplete="off">
+              <form (ngSubmit)="f.form.valid && onSubmit(f)" #f="ngForm" method="POST" autocomplete="off">
                 <p class="card-text fw-bold text-muted text-center mb-4">
                   <small>Please complete the form below.</small>
                 </p>
+
+                <div *ngIf="f.submitted && failed && messageFailed!= ''" class="alert alert-danger" role="alert">
+                    {{ messageFailed }}
+                </div>
+
+                <div *ngIf="f.submitted && !failed && messageSuccess!= ''" class="alert alert-success" role="alert">
+                    {{ messageSuccess }}
+                </div>
+
                 <div class="input-group mb-3">
-                  <input type="email" class="form-control" placeholder="Email Address" />
+
+                  <input
+                      type="email"
+                      class="form-control"
+                      name="email"
+                      placeholder="Email Address"
+                      [(ngModel)]="form.email"
+                      required
+                      [email]="true"
+                      #email="ngModel"
+                      [ngClass]="{ 'is-invalid': f.submitted && email.errors }"
+                  />
+
                   <span class="input-group-text" id="basic-addon1">
                     <i class="bi bi-envelope"></i>
                   </span>
+
+                  <div *ngIf="email.errors && f.submitted" class="invalid-feedback">
+                    <div *ngIf="email.errors['required']">Email Address is required</div>
+                    <div *ngIf="email.errors['email']">Please provide a valid email address</div>
+                  </div>
+
                 </div>
                 <div class="input-group mb-3">
-                  <input type="password" class="form-control" placeholder="Password" />
+
+                  <input
+                      type="password"
+                      class="form-control"
+                      name="password"
+                      placeholder="Password"
+                      [(ngModel)]="form.password"
+                      required
+                      minlength="8"
+                      #password="ngModel"
+                      [ngClass]="{ 'is-invalid': f.submitted && password.errors }"
+                    />
+
                   <span class="input-group-text" id="basic-addon2">
                     <i class="bi bi-key"></i>
                   </span>
+
+                  <div *ngIf="password.errors && f.submitted" class="invalid-feedback">
+                    <div *ngIf="password.errors['required']">Password is required</div>
+                    <div *ngIf="password.errors['minlength']">
+                      Password must be at least 8 characters
+                    </div>
+                    <div *ngIf="password.errors['confirmed']">The password confirmation does not match.</div>
+                  </div>
+
                 </div>
                 <div class="input-group mb-3">
-                  <input type="password" class="form-control" placeholder="Confirm Password" />
+
+                  <input
+                      type="password"
+                      class="form-control"
+                      name="password_confirm"
+                      placeholder="Password Confirmation"
+                      [(ngModel)]="form.password_confirm"
+                      required
+                      minlength="8"
+                      #password_confirm="ngModel"
+                      [ngClass]="{ 'is-invalid': f.submitted && password_confirm.errors }"
+                    />
+
                   <span class="input-group-text" id="basic-addon3">
                     <i class="bi bi-key"></i>
                   </span>
+
+                  <div *ngIf="password_confirm.errors && f.submitted" class="invalid-feedback">
+                    <div *ngIf="password_confirm.errors['required']">Password Confirmation is required</div>
+                    <div *ngIf="password_confirm.errors['minlength']">
+                        Password Confirmation must be at least 8 characters
+                    </div>
+                    {{ form.password_confirm.value }}
+                  </div>
+
                 </div>
-                <button type="submit" class="btn btn-primary w-100" bbbTooltipTheme='dark' bbbTooltipPlacement='vertical' bbbTooltip='Update New Password'>
-                  <i class="bi bi-save me-1"></i> Set Password
-                </button>
+
+
+
+                @if(loadingSubmit){
+                  <button type="submit" class="btn btn-primary w-100 disabled" bbbTooltipTheme='dark' bbbTooltipPlacement='vertical' bbbTooltip='Update New Password'>
+                    <i class="spinner-border spinner-border-sm me-1"></i> Set Password
+                  </button>
+                }@else{
+                  <button type="submit" class="btn btn-primary w-100" bbbTooltipTheme='dark' bbbTooltipPlacement='vertical' bbbTooltip='Update New Password'>
+                    <i class="bi bi-save me-1"></i> Set Password
+                  </button>
+                }
+
               </form>
             </div>
           </div>

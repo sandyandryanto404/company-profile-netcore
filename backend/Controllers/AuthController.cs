@@ -39,7 +39,7 @@ namespace backend.Controllers
         {
             if (string.IsNullOrEmpty(model.Email))
             {
-                return BadRequest(new { message = "The field 'Username' can not be empty!" });
+                return BadRequest(new { message = "The field 'Email' can not be empty!" });
             }
 
             if (string.IsNullOrEmpty(model.Password))
@@ -53,11 +53,12 @@ namespace backend.Controllers
                 return BadRequest(new { message = "The email has already been taken.!" });
             }
 
-            String token = new Guid().ToString();
+            String token = System.Guid.NewGuid().ToString();
             User user = new User();
+            user.Phone = DateTime.Now.Ticks.ToString();
             user.Email = model.Email;
             user.Password = BCrypt.Net.BCrypt.HashPassword(model.Password);
-            user.Status = 0;
+            user.Status = 1;
             user.ConfirmToken = token;
             _db.Add(user);
             _db.SaveChanges();
@@ -96,35 +97,35 @@ namespace backend.Controllers
                 return BadRequest(new { message = "We can't find a user with that e-mail address." });
             }
 
-            String token = new Guid().ToString();
+            String token = System.Guid.NewGuid().ToString();
             user.ResetToken = token;
             _db.Update(user);
             _db.SaveChanges();
 
-            return Ok(new { status = true, data = new Object(), message = "We have e-mailed your password reset link!" });
+            return Ok(new { status = true, data = token, message = "We have e-mailed your password reset link!" });
 
         }
 
         [HttpPost("email/reset/{token}")]
-        public IActionResult EmailReset(string token, [FromBody] ResetPasswordRequest model)
+        public IActionResult EmailReset(string token, [FromBody] RegisterRequest model)
         {
             if (string.IsNullOrEmpty(model.Email))
             {
-                return BadRequest(new { message = "The field 'Username' can not be empty!" });
+                return BadRequest(new { message = "The field 'Email' can not be empty!" });
             }
 
-            if (string.IsNullOrEmpty(model.NewPassword))
+            if (string.IsNullOrEmpty(model.Password))
             {
                 return BadRequest(new { message = "The field 'Password' can not be empty!" });
             }
 
-            User user = _db.User.Where(x => x.ResetToken == token).FirstOrDefault();
+            User user = _db.User.Where(x => x.ResetToken == token && x.Email == model.Email).FirstOrDefault();
             if (user == null)
             {
-                return BadRequest(new { message = "We can't find a user with that e-mail address." });
+                return BadRequest(new { message = "We can't find a user with that e-mail address or password reset token is invalid.!" });
             }
 
-            user.Password = BCrypt.Net.BCrypt.HashPassword(model.NewPassword);
+            user.Password = BCrypt.Net.BCrypt.HashPassword(model.Password);
             _db.Update(user);
             _db.SaveChanges();
             return Ok(new { status = true, data = new Object(), message = "Your password has been reset!" });
