@@ -95,7 +95,6 @@ export class DetailComponent implements OnInit {
     let article_id = this.content.id
     this.loadingSubmit = true;
     this.failed = false;
-
     this.articleService.commentCreate(article_id, form.value).subscribe({
       next: data => {
         setTimeout(() => {
@@ -103,6 +102,7 @@ export class DetailComponent implements OnInit {
           this.failed = false;
           form.reset();
           form.controls['comment'].setErrors(null);
+          this.loadingComment = true;
           this.loadComment()
         }, 2000)
       },
