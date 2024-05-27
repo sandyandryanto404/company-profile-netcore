@@ -1,4 +1,15 @@
-﻿using backend.Models;
+﻿/**
+ * This file is part of the Sandy Andryanto Company Profile Website.
+ *
+ * @author     Sandy Andryanto <sandy.andryanto404@gmail.com>
+ * @copyright  2024
+ *
+ * For the full copyright and license information,
+ * please view the LICENSE.md file that was distributed
+ * with this source code.
+ */
+
+using backend.Models;
 using backend.Models.Entities;
 using backend.Models.Requests;
 using backend.Utilities;
@@ -25,60 +36,15 @@ namespace backend.Controllers
         {
             int limit = 3 * Page;
 
-            var newArticle = _db.Article
-                .Include(x => x.User)
-                .Include(x => x.References)
-                .Where(x=> x.Status == 1)
-                .Select(x => new {
-                    x.Id,
-                    x.Title,
-                    x.Description,
-                    x.CreatedAt,
-                    x.Content,
-                    x.User.FirstName,
-                    x.User.LastName,
-                    x.User.Gender,
-                    x.User.Email,
-                    x.User.AboutMe,
-                    x.References
-                })
-                .OrderByDescending(x=> x.Id)
-                .FirstOrDefault();
-
-            var newArticles = _db.Article
-                .Include(x => x.User)
-                .Include(x => x.References)
-                .Where(x => x.Status == 1 && x.Id != newArticle.Id)
-                .Take(3)
-                .Select(x => new {
-                    x.Id,
-                    x.Title,
-                    x.Description,
-                    x.CreatedAt,
-                    x.Content,
-                    x.User.FirstName,
-                    x.User.LastName,
-                    x.User.Gender,
-                    x.User.Email,
-                    x.User.AboutMe,
-                    x.References
-                })
-                .OrderByDescending(x => x.Id)
-                .ToList();
-
-            var stories = _db.Article
-                .Include(x => x.User)
-                .Include(x => x.References)
-                .Where(x => x.Status == 1)
-                .Take(limit)
-                .OrderByDescending(x => x.Id)
-                .ToList();
+            List<ArticleResult> newArticle = _db.Database.SqlQueryRaw<ArticleResult>("SELECT a.\"Id\", a.\"Title\", a.\"Slug\", a.\"Description\", a.\"CreatedAt\", u.\"FirstName\", u.\"LastName\", u.\"Gender\",( SELECT string_agg(r.\"Name\", ',') AS r FROM \"public\".\"Reference\" r WHERE r.\"Id\" IN ( SELECT \"ReferencesId\" FROM \"public\".\"ArticleReference\" WHERE \"ArticlesId\" = a.\"Id\")) Categories FROM \"public\".\"Article\" a INNER JOIN \"public\".\"User\" u ON u.\"Id\" = a.\"UserId\" WHERE a.\"Status\" = 1  ORDER BY  a.\"Id\" DESC LIMIT 1 OFFSET 0").ToList();
+            List<ArticleResult> newArticles = _db.Database.SqlQueryRaw<ArticleResult>("SELECT a.\"Id\", a.\"Title\", a.\"Slug\", a.\"Description\", a.\"CreatedAt\", u.\"FirstName\", u.\"LastName\", u.\"Gender\",( SELECT string_agg(r.\"Name\", ',') AS r FROM \"public\".\"Reference\" r WHERE r.\"Id\" IN ( SELECT \"ReferencesId\" FROM \"public\".\"ArticleReference\" WHERE \"ArticlesId\" = a.\"Id\")) Categories FROM \"public\".\"Article\" a INNER JOIN \"public\".\"User\" u ON u.\"Id\" = a.\"UserId\" WHERE a.\"Status\" = 1  ORDER BY  a.\"Id\" DESC LIMIT 3 OFFSET 1").ToList();
+            List<ArticleResult> stories = _db.Database.SqlQueryRaw<ArticleResult>("SELECT a.\"Id\", a.\"Title\", a.\"Slug\", a.\"Description\", a.\"CreatedAt\", u.\"FirstName\", u.\"LastName\", u.\"Gender\",( SELECT string_agg(r.\"Name\", ',') AS r FROM \"public\".\"Reference\" r WHERE r.\"Id\" IN ( SELECT \"ReferencesId\" FROM \"public\".\"ArticleReference\" WHERE \"ArticlesId\" = a.\"Id\")) Categories FROM \"public\".\"Article\" a INNER JOIN \"public\".\"User\" u ON u.\"Id\" = a.\"UserId\" WHERE a.\"Status\" = 1 ORDER BY  a.\"Id\" DESC LIMIT " + limit).ToList();
 
             IDictionary<string, object> response = new Dictionary<string, object>();
             bool continueArticle = limit <= _db.Article.Where(x => x.Status == 1).Count();
 
             response.Add("continue", continueArticle);
-            response.Add("new_article", newArticle);
+            response.Add("new_article", newArticle.Count > 0 ? newArticle[0] : null);
             response.Add("new_articles", newArticles);
             response.Add("page", Page);
             response.Add("stories", stories);

@@ -1,3 +1,14 @@
+/**
+ * This file is part of the Sandy Andryanto Company Profile Website.
+ *
+ * @author     Sandy Andryanto <sandy.andryanto404@gmail.com>
+ * @copyright  2024
+ *
+ * For the full copyright and license information,
+ * please view the LICENSE.md file that was distributed
+ * with this source code.
+ */
+
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -32,7 +43,7 @@ export class ArticleService {
   }
 
   commentCreate(id: number, data: any): Observable<any>{
-    return this.http.post(environment.backendURL+"/article/comments/"+id, { headers: this.authRequestHeader() });
+    return this.http.post(environment.backendURL+"/article/comments/"+id, data, { headers: this.authRequestHeader() });
   }
 
 }

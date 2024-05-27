@@ -1,0 +1,13 @@
+<div [class]="getClasses(comment)">
+	<div class="flex-shrink-0"><img class="rounded-circle" width=50 [src]="comment.user.gender === 'F' ? '/assets/female.png' : '/assets/male.png'" alt="..." /></div>
+	<div class="ms-3">
+		<div class="fw-bold">{{ comment.user.firstName }} {{ comment.user.lastName }}</div>
+		<div class="text-muted fst-italic mb-2">
+			<small>{{ dateConvert(comment.createdAt) }}</small>
+		</div>
+		{{ comment.content }}
+		@for (child of comment.children; track child; let idx = $index) {
+      <app-comment [comment]="child"></app-comment>
+    }
+	</div>
+</div>

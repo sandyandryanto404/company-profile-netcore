@@ -1,3 +1,14 @@
+/**
+ * This file is part of the Sandy Andryanto Company Profile Website.
+ *
+ * @author     Sandy Andryanto <sandy.andryanto404@gmail.com>
+ * @copyright  2024
+ *
+ * For the full copyright and license information,
+ * please view the LICENSE.md file that was distributed
+ * with this source code.
+ */
+
 import { Component, OnInit } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { Title } from "@angular/platform-browser";
@@ -66,7 +77,6 @@ export class HomeComponent implements OnInit {
 
     this.pageService.subscribe({ email: email }).subscribe({
       next: data => {
-        console.log(data)
         this.loadingSubmit = false;
         this.failed = false;
         this.message = 'Thank for subscribing to our newsletter.'
